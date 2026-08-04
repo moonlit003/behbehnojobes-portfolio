@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>behbehnojobes - Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="https://www.transparentpng.com/thumb/bleach/DhRKK4-bleach-simple.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0e10;
+            font-family: 'Google Sans Flex', 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #dbdee1;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .carrd-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #1a1b1f;
+            border-radius: 16px;
+            border: 1px solid #232428;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            display: flex;
+            overflow: hidden;
+            animation: containerAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            align-items: stretch;
+        }
+
+        @keyframes containerAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .profile-panel {
+            background-color: #111214;
+            width: 320px;
+            flex-shrink: 0;
+            position: relative;
+            border-right: 1px solid #232428;
+        }
+
+        .profile-banner {
+            height: 120px;
+            background-color: #232428;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .avatar-mask {
+            width: 104px;
+            height: 104px;
+            background-color: #111214;
+            border-radius: 50%;
+            position: absolute;
+            top: 68px;
+            left: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .avatar-mask:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-img-container {
+            position: relative;
+            width: 92px;
+            height: 92px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .status-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #23a55a;
+            border: 4px solid #111214;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            animation: pulseStatus 3s infinite;
+        }
+
+        @keyframes pulseStatus {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(35, 165, 90, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(35, 165, 90, 0); }
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: 96px;
+            left: 135px;
+            background-color: #2b2d31;
+            padding: 8px 12px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.3;
+            max-width: 165px;
+            color: #dbdee1;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -5px;
+            width: 12px;
+            height: 12px;
+            background-color: #2b2d31;
+            border-radius: 50%;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            width: 8px;
+            height: 8px;
+            background-color: #2b2d31;
+            border-radius: 50%;
+        }
+
+        .speech-bubble-text {
+            font-style: italic;
+            color: #b5bac1;
+        }
+
+        .profile-details {
+            padding: 64px 16px 20px;
+        }
+
+        .username {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f2f3f5;
+            margin-bottom: 2px;
+        }
+
+        .user-tag {
+            font-size: 13px;
+            color: #b5bac1;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag-badge {
+            background-color: #2b2d31;
+            color: #dbdee1;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            user-select: none;
+        }
+
+        .tag-badge:hover {
+            background-color: #35373c;
+            color: #ffffff;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-message {
+            background-color: #4752c4;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-grow: 1;
+            font-family: inherit;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            user-select: none;
+            transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-message:hover {
+            background-color: #3b429f;
+            box-shadow: 0 4px 12px rgba(71, 82, 196, 0.3);
+        }
+
+        .btn-message:active {
+            transform: scale(0.97);
+        }
+
+        .villain-origin {
+            color: #b5bac1;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .member-date {
+            border-top: 1px solid #232428;
+            padding-top: 14px;
+            user-select: none;
+        }
+
+        .date-label {
+            color: #b5bac1;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .date-value {
+            font-size: 13px;
+            color: #dbdee1;
+            font-weight: 600;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            height: 500px;
+            overflow-y: auto;
+            background-color: #1e1f22;
+            padding: 0 24px 24px 28px;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: #1a1b1e #2e3035;
+        }
+
+        .main-content::-webkit-scrollbar { width: 12px; }
+        .main-content::-webkit-scrollbar-track {
+            background-color: #2e3035;
+            border-radius: 8px;
+            border: 4px solid transparent;
+            background-clip: padding-box;
+        }
+        .main-content::-webkit-scrollbar-thumb {
+            background-color: #1a1b1e;
+            border-radius: 8px;
+            border: 4px solid transparent;
+            background-clip: padding-box;
+            transition: background-color 0.2s ease;
+        }
+        .main-content::-webkit-scrollbar-thumb:hover { background-color: #232428; }
+        .main-content::-webkit-scrollbar-thumb:active { background-color: #35373c; }
+
+        .tabs {
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid #2b2d31;
+            padding-top: 24px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            background-color: #1e1f22;
+            z-index: 10;
+        }
+
+        .tab-item {
+            color: #b5bac1;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .tab-item:hover { color: #dbdee1; }
+        .tab-item.active { color: #f2f3f5; }
+
+        .tab-indicator {
+            position: absolute;
+            bottom: -1px;
+            height: 2px;
+            background-color: #f2f3f5;
+            transition: left 0.25s cubic-bezier(0.2, 0, 0, 1), width 0.25s cubic-bezier(0.2, 0, 0, 1);
+            border-radius: 2px;
+        }
+
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .works-grid, .price-cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .widget-card, .price-card {
+            background-color: #2b2d31;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            min-height: 150px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .widget-card { min-height: 200px; }
+
+        .widget-card:hover, .price-card:hover, .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-text-layer, .price-card-body {
+            padding: 20px;
+            width: 50%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .price-card-body { justify-content: space-between; }
+
+        .about-header {
+            color: #b5bac1;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+            gap: 6px;
+        }
+
+        .card-title, .price-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f2f3f5;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+
+        .price-card-title { font-size: 18px; margin-bottom: 6px; }
+
+        .card-subtitle, .price-card-desc {
+            font-size: 13px;
+            color: #b5bac1;
+            line-height: 1.4;
+        }
+
+        .price-card-desc { margin-bottom: 12px; }
+
+        .price-tag {
+            font-size: 16px;
+            font-weight: 700;
+            color: #23a55a;
+        }
+
+        .card-image-bleed {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            z-index: 1;
+            mask-image: linear-gradient(to right, transparent 0%, black 35%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 35%);
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #111214;
+        }
+
+        .price-card .card-image-bleed { cursor: default; }
+
+        .card-bleed-img, .card-bleed-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .image-expand-hint {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .expand-hint-badge {
+            background-color: rgba(17, 18, 20, 0.85);
+            color: #f2f3f5;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transform: translateY(4px);
+            transition: transform 0.3s ease;
+        }
+
+        .media-count-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: rgba(0, 0, 0, 0.65);
+            color: #f2f3f5;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+            z-index: 4;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .widget-card .card-image-bleed:hover .image-expand-hint { opacity: 1; }
+        .widget-card .card-image-bleed:hover .expand-hint-badge { transform: translateY(0); }
+        .widget-card:hover .card-bleed-img, .widget-card:hover .card-bleed-video { transform: scale(1.05); }
+
+        .info-container { display: flex; flex-direction: column; gap: 16px; }
+        .info-card {
+            background-color: #2b2d31;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-section-title {
+            color: #f2f3f5;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #b5bac1;
+            line-height: 1.6;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .info-grid-item {
+            background-color: #1e1f22;
+            padding: 12px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .info-grid-item:hover {
+            background-color: #232428;
+            transform: translateY(-1px);
+        }
+
+        .info-grid-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #b5bac1;
+            margin-bottom: 4px;
+            user-select: none;
+        }
+
+        .info-grid-value {
+            font-size: 13px;
+            color: #dbdee1;
+            font-weight: 600;
+        }
+
+        .discord-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(11, 12, 14, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .discord-modal.active { opacity: 1; pointer-events: auto; }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            z-index: 10;
+        }
+
+        .modal-action-btn {
+            background: rgba(43, 45, 49, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #b5bac1;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+        }
+
+        .modal-action-btn:hover { background: #35373c; color: #f2f3f5; }
+        .modal-action-btn:active { transform: scale(0.96); }
+
+        .modal-viewport {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .modal-viewport.video-mode { cursor: default; }
+        .modal-viewport.dragging { cursor: grabbing; }
+
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(43, 45, 49, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f2f3f5;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            transition: background 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(53, 55, 60, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-nav-btn.prev { left: 24px; }
+        .modal-nav-btn.next { right: 24px; }
+
+        .modal-img-wrapper {
+            transition: transform 0.05s linear;
+            will-change: transform;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .modal-viewport.video-mode .modal-img-wrapper { pointer-events: auto; }
+
+        .modal-img, .modal-video {
+            max-width: 85vw;
+            max-height: 80vh;
+            border-radius: 4px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+        }
+
+        .modal-img { pointer-events: none; }
+        .modal-video { outline: none; background-color: #000; }
+
+        .modal-controls {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2b2d31;
+            border: 1px solid #35373c;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .counter-badge {
+            color: #b5bac1;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 0 8px;
+            user-select: none;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: #b5bac1;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .control-btn:hover { background-color: #35373c; color: #f2f3f5; }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .carrd-container { flex-direction: column; max-width: 450px; }
+            .profile-panel { width: 100%; border-right: none; border-bottom: 1px solid #232428; }
+            .widget-card, .price-card { flex-direction: column; }
+            .card-text-layer, .price-card-body { width: 100%; }
+            .card-image-bleed {
+                position: relative;
+                width: 100%;
+                height: 180px;
+                mask-image: none;
+                -webkit-mask-image: none;
+            }
+            .info-grid { grid-template-columns: 1fr; }
+            .main-content { height: 400px; padding-right: 16px; }
+            .modal-nav-btn.prev { left: 8px; }
+            .modal-nav-btn.next { right: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carrd-container">
+        <!-- Sidebar Panel -->
+        <aside class="profile-panel">
+            <div class="profile-banner"></div>
+            
+            <div class="avatar-mask">
+                <div class="avatar-img-container">
+                    <img id="profile-avatar" src="" alt="Profile Picture" class="avatar-img">
+                    <div class="status-dot"></div>
+                </div>
+            </div>
+
+            <div class="speech-bubble">
+                <span id="profile-status" class="speech-bubble-text"></span>
+            </div>
+
+            <div class="profile-details">
+                <h1 id="profile-username" class="username"></h1>
+                
+                <div id="profile-tags" class="user-tag"></div>
+
+                <div class="profile-actions">
+                    <a id="profile-contact-btn" href="#" target="_blank" class="btn-message">Contact me</a>
+                </div>
+
+                <p id="profile-origin" class="villain-origin"></p>
+
+                <div class="member-date">
+                    <div class="date-label">Member Since</div>
+                    <div id="profile-member-since" class="date-value"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content" id="main-content">
+            <nav class="tabs" id="tabs-header"></nav>
+
+            <div id="tab-works" class="tab-panel active">
+                <div class="works-grid" id="works-container"></div>
+            </div>
+
+            <div id="tab-info" class="tab-panel">
+                <div class="info-container" id="info-container"></div>
+            </div>
+
+            <div id="tab-prices" class="tab-panel">
+                <div class="price-cards-grid" id="prices-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Element -->
+    <div class="discord-modal" id="discord-modal">
+        <div class="modal-header">
+            <a href="#" target="_blank" class="modal-action-btn" id="modal-original-link">Open Original</a>
+            <button class="modal-action-btn" onclick="closeModal()">Close (Esc)</button>
+        </div>
+
+        <div class="modal-viewport" id="modal-viewport">
+            <button class="modal-nav-btn prev" id="modal-prev-btn" onclick="prevMedia()">‹</button>
+            <div class="modal-img-wrapper" id="modal-img-wrapper"></div>
+            <button class="modal-nav-btn next" id="modal-next-btn" onclick="nextMedia()">›</button>
+
+            <div class="modal-controls" id="modal-controls">
+                <span class="counter-badge" id="modal-counter">1 / 1</span>
+                <button class="control-btn" id="zoom-in-btn" onclick="zoomIn()" title="Zoom In">+</button>
+                <button class="control-btn" id="zoom-out-btn" onclick="zoomOut()" title="Zoom Out">−</button>
+                <button class="control-btn" id="reset-zoom-btn" onclick="resetZoom()" title="Reset Zoom">↺</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // PORTFOLIO JSON DATA SOURCE
+        // ==========================================
+        const portfolioData = {
+            profile: {
+                username: "@behbehnojobes",
+                handle: "bbnojobs",
+                statusText: "better than yesterday, worse than tomorrow",
+                avatarUrl: "https://cdn.discordapp.com/avatars/515115829948317707/a1360e1fc683e35bb74900170c9aa20b.png?size=4096",
+                contactLink: "https://discord.com/users/515115829948317707",
+                originText: "01000Ad astra per aspera.",
+                memberSince: "22 Nov 2018",
+                tags: ["UX / UI Designer", "Programmer / Scripter"]
+            },
+            works: [
+                {
+                    id: "work-1",
+                    categoryIcon: "⚔️",
+                    categoryName: "Fantasy UI Design",
+                    title: "Fantasy UI inspired by Mushoku Tensei!",
+                    subtitle: "Assets were made in Figma then imported to Roblox Studio.<br>UI is then assembled neatly and Scaled.",
+                    expandHintText: "Click to expand",
+                    media: [
+                        {
+                            type: "image",
+                            url: "https://cdn.discordapp.com/attachments/1532891944789741618/1533585795859091616/image.png?ex=6a710692&is=6a6fb512&hm=48fabc4fc780ecc6bed09747b9d1c97184de0760120fdb2e0f14bbcca825f07b&"
+                        }
+                    ]
+                },
+                {
+                    id: "work-2",
+                    categoryIcon: "🎬",
+                    categoryName: "Scripting",
+                    title: "Dialogue System",
+                    subtitle: "Simple dialogue system with branching and choices",
+                    expandHintText: "Click to watch",
+                    media: [
+                        {
+                            type: "video",
+                            url: "https://cdn.discordapp.com/attachments/1532891944789741618/1534085331836731466/dialogueTest1.mp4?ex=6a72d7cd&is=6a71864d&hm=aa301d6752d78c8c2ea3510b9800a0e43b572760439dbc31473711016841787b&"
+                        }
+                    ]
+                }
+            ],
+            info: {
+                title: "📌 Background & Skills",
+                description: "Hello! I am yoko. Im an aspiring developer, UI designer, and artist. I build web apps, code game systems, and design cool interfaces and digital art.",
+                details: [
+                    { label: "Primary Tools", value: "Roblox Studio, Godot, Figma, Aseprite" },
+                    { label: "Specialization", value: "Programming, UI/UX Design & Digital Art" },
+                    { label: "Languages", value: "Luau, GDScript, C++, JS HTML/CSS" },
+                    { label: "Availability", value: "Open for Commissions" }
+                ]
+            },
+            prices: [
+                {
+                    title: "UI Design Package",
+                    description: "Complete interface design tailored for your game. Includes source files and layout assets.",
+                    price: "$15+ / project",
+                    imageUrl: "https://cdn.discordapp.com/attachments/1532891944789741618/1533587549061386290/image.png?ex=6a7259b4&is=6a710834&hm=35d3dda9bd1481a196633ebafe3eef1464df2d0e928822fddc1bf89cfa3e1132&"
+                },
+                {
+                    title: "Scripting & Logic",
+                    description: "Implementation of game mechanics, UI integration, and system programming.",
+                    price: "$25+ / project",
+                    imageUrl: "https://cdn.discordapp.com/attachments/1532891944789741618/1533588697281335547/image.png?ex=6a710946&is=6a6fb7c6&hm=6a34aac91bf009af6ef1d406339b18dd74c040a85dd941126cf90e35f2067f32&"
+                },
+                {
+                    title: "Full Game UI + Scripting",
+                    description: "Complete front-to-back package: Full interface design coupled with core gameplay scripting and functional UI integration for small to medium projects.",
+                    price: "85+ / project",
+                    imageUrl: "https://cdn.discordapp.com/attachments/1532891944789741618/1534082264332243104/image.png?ex=6a72d4f1&is=6a718371&hm=92eac129757fc074c3480c4138b81d42896036a45ad3ae7dbb9f8ab336af85e3&"
+                }
+            ]
+        };
+
+        // ==========================================
+        // DYNAMIC RENDERING FUNCTIONS
+        // ==========================================
+        function renderProfile() {
+            const p = portfolioData.profile;
+            document.getElementById('profile-avatar').src = p.avatarUrl;
+            document.getElementById('profile-status').textContent = p.statusText;
+            document.getElementById('profile-username').textContent = p.username;
+            document.getElementById('profile-contact-btn').href = p.contactLink;
+            document.getElementById('profile-origin').textContent = p.originText;
+            document.getElementById('profile-member-since').textContent = p.memberSince;
+
+            const tagsContainer = document.getElementById('profile-tags');
+            tagsContainer.innerHTML = p.handle + " " + p.tags.map(tag => `<span class="tag-badge">${tag}</span>`).join('');
+        }
+
+        function renderWorks() {
+            const container = document.getElementById('works-container');
+            container.innerHTML = portfolioData.works.map(item => {
+                const thumbnail = item.media && item.media.length > 0 ? item.media[0] : null;
+                let mediaElement = '';
+
+                if (thumbnail) {
+                    mediaElement = thumbnail.type === 'video'
+                        ? `<video src="${thumbnail.url}" class="card-bleed-video" muted preload="metadata"></video>`
+                        : `<img src="${thumbnail.url}" alt="${item.title}" class="card-bleed-img">`;
+                }
+
+                const countBadge = item.media && item.media.length > 1 
+                    ? `<div class="media-count-badge">1/${item.media.length}</div>` 
+                    : '';
+
+                return `
+                    <div class="widget-card">
+                        <div class="card-text-layer">
+                            <div class="about-header">
+                                <span>${item.categoryIcon}</span> ${item.categoryName}
+                            </div>
+                            <h2 class="card-title">${item.title}</h2>
+                            <p class="card-subtitle">${item.subtitle}</p>
+                        </div>
+                        <div class="card-image-bleed" onclick="openWorkModal('${item.id}')">
+                            ${countBadge}
+                            ${mediaElement}
+                            <div class="image-expand-hint">
+                                <span class="expand-hint-badge">${item.expandHintText}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderInfo() {
+            const container = document.getElementById('info-container');
+            const info = portfolioData.info;
+            
+            const gridItems = info.details.map(item => `
+                <div class="info-grid-item">
+                    <div class="info-grid-label">${item.label}</div>
+                    <div class="info-grid-value">${item.value}</div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="info-card">
+                    <div class="info-section-title">${info.title}</div>
+                    <p class="info-text">${info.description}</p>
+                    <div class="info-grid">${gridItems}</div>
+                </div>
+            `;
+        }
+
+        function renderPrices() {
+            const container = document.getElementById('prices-container');
+            container.innerHTML = portfolioData.prices.map(item => `
+                <div class="price-card">
+                    <div class="price-card-body">
+                        <div>
+                            <h3 class="price-card-title">${item.title}</h3>
+                            <p class="price-card-desc">${item.description}</p>
+                        </div>
+                        <div class="price-tag">${item.price}</div>
+                    </div>
+                    <div class="card-image-bleed">
+                        <img src="${item.imageUrl}" alt="${item.title}" class="card-bleed-img">
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTabs() {
+            const tabsHeader = document.getElementById('tabs-header');
+            tabsHeader.innerHTML = `
+                <div class="tab-item active" onclick="switchTab(this, 'works')">My Works</div>
+                <div class="tab-item" onclick="switchTab(this, 'info')">Info</div>
+                <div class="tab-item" onclick="switchTab(this, 'prices')">Prices</div>
+                <div class="tab-indicator" id="tab-indicator"></div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProfile();
+            renderTabs();
+            renderWorks();
+            renderInfo();
+            renderPrices();
+
+            const activeTab = document.querySelector('.tab-item.active');
+            if (activeTab) updateIndicator(activeTab);
+        });
+
+        // ==========================================
+        // TAB SWAPPING LOGIC
+        // ==========================================
+        const mainContent = document.getElementById('main-content');
+
+        function updateIndicator(targetTab) {
+            const indicator = document.getElementById('tab-indicator');
+            if (indicator && targetTab) {
+                indicator.style.width = `${targetTab.offsetWidth}px`;
+                indicator.style.left = `${targetTab.offsetLeft}px`;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            const activeTab = document.querySelector('.tab-item.active');
+            if (activeTab) updateIndicator(activeTab);
+        });
+
+        function switchTab(element, tabName) {
+            const tabs = document.querySelectorAll('.tab-item');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const targetPanel = document.getElementById('tab-' + tabName);
+            const activePanel = document.querySelector('.tab-panel.active');
+
+            if (activePanel === targetPanel) return;
+
+            element.classList.add('active');
+            updateIndicator(element);
+
+            if (activePanel) {
+                activePanel.style.opacity = '0';
+                activePanel.style.transform = 'translateY(6px)';
+                
+                setTimeout(() => {
+                    activePanel.classList.remove('active');
+                    activePanel.style.display = 'none';
+
+                    targetPanel.style.display = 'block';
+                    mainContent.scrollTop = 0; 
+
+                    void targetPanel.offsetWidth; 
+                    targetPanel.classList.add('active');
+                    targetPanel.style.opacity = '1';
+                    targetPanel.style.transform = 'translateY(0)';
+                }, 150);
+            }
+        }
+
+        // ==========================================
+        // DISCORD MODAL CONTROLS & GALLERY
+        // ==========================================
+        const modal = document.getElementById('discord-modal');
+        const modalWrapper = document.getElementById('modal-img-wrapper');
+        const modalViewport = document.getElementById('modal-viewport');
+        const modalOriginalLink = document.getElementById('modal-original-link');
+        const modalCounter = document.getElementById('modal-counter');
+        const prevBtn = document.getElementById('modal-prev-btn');
+        const nextBtn = document.getElementById('modal-next-btn');
+
+        const zoomInBtn = document.getElementById('zoom-in-btn');
+        const zoomOutBtn = document.getElementById('zoom-out-btn');
+        const resetZoomBtn = document.getElementById('reset-zoom-btn');
+
+        let currentMediaList = [];
+        let currentMediaIndex = 0;
+
+        let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
+        let isDragging = false;
+        let hasDragged = false;
+        let startX = 0;
+        let startY = 0;
+        let isVideoMode = false;
+
+        function applyTransform() {
+            if (isVideoMode) return;
+            modalWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        }
+
+        function openWorkModal(workId) {
+            const work = portfolioData.works.find(w => w.id === workId);
+            if (!work || !work.media || work.media.length === 0) return;
+
+            currentMediaList = work.media;
+            currentMediaIndex = 0;
+            displayCurrentMedia();
+
+            modal.classList.add('active');
+        }
+
+        function displayCurrentMedia() {
+            const currentItem = currentMediaList[currentMediaIndex];
+            modalOriginalLink.href = currentItem.url;
+            resetZoom();
+            modalWrapper.innerHTML = '';
+
+            if (currentMediaList.length > 1) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+                modalCounter.style.display = 'inline-block';
+                modalCounter.textContent = `${currentMediaIndex + 1} / ${currentMediaList.length}`;
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                modalCounter.style.display = 'none';
+            }
+
+            if (currentItem.type === 'video') {
+                isVideoMode = true;
+                modalViewport.classList.add('video-mode');
+                zoomInBtn.style.display = 'none';
+                zoomOutBtn.style.display = 'none';
+                resetZoomBtn.style.display = 'none';
+
+                const video = document.createElement('video');
+                video.src = currentItem.url;
+                video.className = 'modal-video';
+                video.controls = true;
+                video.autoplay = true;
+                modalWrapper.appendChild(video);
+            } else {
+                isVideoMode = false;
+                modalViewport.classList.remove('video-mode');
+                zoomInBtn.style.display = 'flex';
+                zoomOutBtn.style.display = 'flex';
+                resetZoomBtn.style.display = 'flex';
+
+                const img = document.createElement('img');
+                img.src = currentItem.url;
+                img.className = 'modal-img';
+                img.ondragstart = () => false;
+                modalWrapper.appendChild(img);
+            }
+        }
+
+        function prevMedia() {
+            if (currentMediaList.length <= 1) return;
+            currentMediaIndex = (currentMediaIndex - 1 + currentMediaList.length) % currentMediaList.length;
+            displayCurrentMedia();
+        }
+
+        function nextMedia() {
+            if (currentMediaList.length <= 1) return;
+            currentMediaIndex = (currentMediaIndex + 1) % currentMediaList.length;
+            displayCurrentMedia();
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            stopDragging();
+            
+            const video = modalWrapper.querySelector('video');
+            if (video) {
+                video.pause();
+                video.src = '';
+            }
+            modalWrapper.innerHTML = '';
+        }
+
+        function zoomIn() {
+            if (isVideoMode) return;
+            scale = Math.min(scale + 0.3, 3);
+            applyTransform();
+        }
+
+        function zoomOut() {
+            if (isVideoMode) return;
+            scale = Math.max(scale - 0.3, 0.5);
+            if (scale === 1) {
+                translateX = 0;
+                translateY = 0;
+            }
+            applyTransform();
+        }
+
+        function resetZoom() {
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            applyTransform();
+        }
+
+        modalViewport.addEventListener('wheel', (e) => {
+            if (isVideoMode) return;
+            e.preventDefault();
+            if (e.deltaY < 0) zoomIn();
+            else zoomOut();
+        }, { passive: false });
+
+        function stopDragging() {
+            isDragging = false;
+            modalViewport.classList.remove('dragging');
+        }
+
+        modalViewport.addEventListener('mousedown', (e) => {
+            if (isVideoMode) return;
+            if (e.target.closest('.modal-controls') || e.target.closest('.modal-nav-btn')) return;
+            e.preventDefault();
+            isDragging = true;
+            hasDragged = false;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            modalViewport.classList.add('dragging');
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging || isVideoMode) return;
+            hasDragged = true;
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            applyTransform();
+        });
+
+        window.addEventListener('mouseup', stopDragging);
+        window.addEventListener('mouseleave', stopDragging);
+
+        modalViewport.addEventListener('click', (e) => {
+            if (isVideoMode) {
+                if (e.target === modalViewport) closeModal();
+                return;
+            }
+            if (!hasDragged && (e.target === modalViewport || e.target === modalWrapper)) {
+                closeModal();
+            }
+            hasDragged = false;
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') prevMedia();
+            if (e.key === 'ArrowRight') nextMedia();
+        });
+    </script>
+</body>
+</html>
